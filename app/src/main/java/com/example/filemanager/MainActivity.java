@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.filemanager.Fragments.CardFragment;
+import com.example.filemanager.Fragments.FileAdapter;
 import com.example.filemanager.Fragments.HomeFragment;
 import com.example.filemanager.Fragments.InternalFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         navigationView.setCheckedItem(R.id.nav_home);
+
+
+
     }
 
     @Override

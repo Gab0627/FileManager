@@ -32,6 +32,7 @@ import java.util.Locale;
 public class InternalFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private FileAdapter fileAdapter;
     private List<File> fileList;
     private ImageView img_back;
     private TextView tv_pathHolder;
@@ -47,12 +48,13 @@ public class InternalFragment extends Fragment {
         tv_pathHolder = view.findViewById(R.id.tv_pathHolder);
         img_back = view.findViewById(R.id.img_back);
 
-        runtimePermission();
 
         String internalStorage = System.getenv("EXTERNAL STORAGE");
         storage = new File(internalStorage);
 
         tv_pathHolder.setText(storage.getAbsolutePath());
+        runtimePermission();
+
 
         return view;
     }
@@ -95,7 +97,11 @@ public class InternalFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_internal);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        fileList = new ArrayList<>()
+        fileList = new ArrayList<>();
+        fileList.addAll(findFiles(storage));
+
+        fileAdapter = new FileAdapter(getContext(), fileList);
+        recyclerView.setAdapter(fileAdapter);
 
     }
 }
